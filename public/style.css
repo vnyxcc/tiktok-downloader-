@@ -1,0 +1,74 @@
+body {
+  background-color: #121212;
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.container {
+  text-align: center;
+  background: #1e1e1e;
+  padding: 40px 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(0,0,0,0.7);
+  width: 90%;
+  max-width: 400px;
+}
+
+h1 {
+  margin-bottom: 10px;
+  font-size: 2em;
+  color: #ff0050;
+}
+
+p {
+  margin-bottom: 20px;
+  font-size: 0.9em;
+  color: #ccc;
+}
+
+input {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: none;
+  margin-bottom: 15px;
+  background: #2a2a2a;
+  color: #fff;
+}
+
+button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  background: #ff0050;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  width: 100%;
+  margin-bottom: 10px;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #ff3366;
+}
+
+.download-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 12px 20px;
+  background: #00e676;
+  color: #000;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.download-btn:hover {
+  background: #00c853;
+    }
