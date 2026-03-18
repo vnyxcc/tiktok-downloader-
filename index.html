@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TikTok Downloader</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      margin-top: 100px;
+    }
+    input {
+      width: 300px;
+      padding: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>TikTok Downloader</h1>
+
+<input type="text" id="url" placeholder="Paste TikTok URL">
+<button onclick="download()">Download</button>
+
+<p id="result"></p>
+
+<script>
+async function download() {
+  let url = document.getElementById("url").value;
+
+  let response = await fetch(`https://api.tiklydown.eu.org/api/download?url=${url}`);
+  let data = await response.json();
+
+  if (data.video) {
+    document.getElementById("result").innerHTML =
+      `<a href="${data.video}" target="_blank">Download Video</a>`;
+  } else {
+    document.getElementById("result").innerText = "Failed!";
+  }
+}
+</script>
+
+</body>
+</html>
