@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TikTok Downloader</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      margin-top: 100px;
+      background: #111;
+      color: white;
+    }
+    input {
+      width: 300px;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+    }
+    button {
+      padding: 10px 20px;
+      margin-left: 10px;
+      border: none;
+      border-radius: 8px;
+      background: #ff0050;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<h1>TikTok Downloader</h1>
+
+<input type="text" id="url" placeholder="Paste TikTok URL">
+<button onclick="download()">Download</button>
+
+<p id="result"></p>
+
+<script>
+async function download() {
+  let url = document.getElementById("url").value;
+  let result = document.getElementById("result");
+
+  if (!url) {
+    result.innerText = "Paste a link first!";
+    return;
+  }
+
+  result.innerText = "Loading...";
+
+  try {
+    let response = await fetch(`/download?url=${encodeURIComponent(url)}`);
+    let data = await response.json();
+
+    if (data.video) {
+      result.innerHTML =
+        `<a href="${data.video}" target="_blank">Download Video</a>`;
+    } else {
+      result.innerText = "Failed. Try another link.";
+    }
+
+  } catch (err) {
+    result.innerText = "Server error.";
+  }
+}
+</script>
+
+</body>
+</html>
