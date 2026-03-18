@@ -1,45 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TikTok Downloader</title>
-  <style>
-    body {
-      font-family: Arial;
-      text-align: center;
-      margin-top: 100px;
-      background: #111;
-      color: white;
-    }
-    input {
-      width: 300px;
-      padding: 10px;
-      border-radius: 8px;
-      border: none;
-    }
-    button {
-      padding: 10px 20px;
-      margin-left: 10px;
-      border: none;
-      border-radius: 8px;
-      background: #ff0050;
-      color: white;
-      cursor: pointer;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>TikTok Downloader</h1>
+<div class="container">
+  <h1>TikTok Downloader</h1>
+  <p>Paste any TikTok link and download instantly</p>
 
-<input type="text" id="url" placeholder="Paste TikTok URL">
-<button onclick="download()">Download</button>
+  <input type="text" id="url" placeholder="Paste TikTok URL">
+  <button onclick="download()">Download</button>
 
-<p id="result"></p>
+  <p id="result"></p>
+</div>
 
 <script>
 async function download() {
-  let url = document.getElementById("url").value;
-  let result = document.getElementById("result");
+  const url = document.getElementById("url").value.trim();
+  const result = document.getElementById("result");
 
   if (!url) {
     result.innerText = "Paste a link first!";
@@ -49,16 +31,14 @@ async function download() {
   result.innerText = "Loading...";
 
   try {
-    let response = await fetch(`/download?url=${encodeURIComponent(url)}`);
-    let data = await response.json();
+    const response = await fetch(`/download?url=${encodeURIComponent(url)}`);
+    const data = await response.json();
 
     if (data.video) {
-      result.innerHTML =
-        `<a href="${data.video}" target="_blank">Download Video</a>`;
+      result.innerHTML = `<a href="${data.video}" target="_blank" class="download-btn">Download Video</a>`;
     } else {
-      result.innerText = "Failed. Try another link.";
+      result.innerText = data.error || "Failed. Try another link.";
     }
-
   } catch (err) {
     result.innerText = "Server error.";
   }
